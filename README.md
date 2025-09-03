@@ -48,27 +48,27 @@ python compare_json_paths.py <基準颱風CSV路徑> [選項]
 1.  **基本比較**
     *   比較 `2019LEKIMA.csv` 與資料庫中所有颱風，並依預設的 DTW 分數排序，顯示前 5 名。
     ```bash
-    python compare_json_paths.py data/測試用/2019LEKIMA.csv --top_n 5
+    python compare_json_paths.py data\測試用\2025PODUL.csv --top_n 5
     ```
 
 2.  **指定排序演算法並產生報告與地圖**
     *   改用 LCSS 演算法排序，並將結果儲存為 CSV 檔案 (`-o`) 和地圖 (`--plot`)。
     ```bash
-    python compare_json_paths.py data/測試用/2019LEKIMA.csv --sort_by lcss --top_n 5 -o --plot
+    python compare_json_paths.py data\測試用\2025PODUL.csv --sort_by lcss --top_n 5 -o --plot
     ```
 
 3.  **使用綜合分數排名 (自訂權重)**
     *   使用綜合分數 (`composite`) 排序，並透過 `--weights` 自訂權重 (順序: DTW, LCSS, Hausdorff, Feature)。此處設定 DTW 和 LCSS 的權重較高。
     ```bash
-    python compare_json_paths.py data/測試用/2019LEKIMA.csv --sort_by composite --weights 0.4 0.4 0.1 0.1 -o --plot
+    python compare_json_paths.py data\測試用\2025PODUL.csv --sort_by composite --weights 0.4 0.4 0.1 0.1 -o --plot
     ```
 
 4.  **篩選特定年份並進行路徑裁切**
     *   只比較 2010-2020 年間的颱風，並且在計算前，先將歷史路徑裁切至基準路徑周圍 250 公里範圍內。
     ```bash
-    python compare_json_paths.py data/測試用/2019LEKIMA.csv --start_year 2010 --end_year 2020 --clip_dist 250
+    python compare_json_paths.py data\測試用\2025PODUL.csv --start_year 2010 --end_year 2020 --clip_dist 250
     ```
-    * 常用: dtw演算法，在計算前，先將歷史路徑裁切至基準路徑周圍 50 公里範圍內。
+    * 常用: 採用dtw演算法排序，在計算前，先將歷史路徑裁切至基準路徑周圍 50 公里範圍內。
     ```bash
     python compare_json_paths.py data\測試用\2025PODUL.csv --top_n 5 --sort_by dtw -o --plot --clip_dist 50
     ```
@@ -112,5 +112,6 @@ python compare_json_paths.py <基準颱風CSV路徑> [選項]
 ## 輸出說明
 
 *   **終端機**: 程式執行後，會在終端機印出一個格式化的表格，顯示最相似的前 N 個颱風及其各項分數。
-*   **CSV 檔案**: 如果使用 `-o` 選項，詳細結果會儲存於 `results/<基準颱風名>/<排序演算法>.csv`。
-*   **地圖圖片**: 如果使用 `--plot` 選項，比較圖會儲存於 `results/<基準颱G風名>/<排序演算法>.png`。
+*   **CSV 檔案**: 如果使用 `-o` 選項，詳細結果會儲存於 `results\<基準颱風名>\<排序演算法>.csv`。
+*   **地圖圖片**: 如果使用 `--plot` 選項，比較圖會儲存於 `results\<基準颱風名>\<排序演算法>.png`。
+
