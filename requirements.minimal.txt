@@ -1,0 +1,4 @@
+numpy==1.26.3
+tqdm==4.67.1
+matplotlib==3.10.3
+Cartopy==0.25.0
